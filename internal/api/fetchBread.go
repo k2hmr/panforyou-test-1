@@ -11,7 +11,7 @@ import (
 )
 
 
-func FetchFood(entryID string) (*model.SaveData, error) {
+func FetchBread(entryID string) (*model.SaveData, error) {
 	err := godotenv.Load(".env")
 	var spaceID = os.Getenv("SPACE_ID")
 	var accessToken = os.Getenv("ACCESS_TOKEN")
@@ -31,7 +31,7 @@ func FetchFood(entryID string) (*model.SaveData, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("API request failed with status: %s", resp.Status)
+		return nil, fmt.Errorf("APIリクエストに失敗しました。: %s", resp.Status)
 	}
 
 	var resData model.ResData
