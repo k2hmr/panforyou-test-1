@@ -29,7 +29,7 @@ var rootCmd = &cobra.Command{
 			fmt.Println(err)
 			os.Exit(1)
 		}
-		
+
 		ctx := context.Background()
 		err = api.SaveBread(*bread, ctx)
 		if err != nil {
@@ -46,5 +46,3 @@ func Execute() {
 		os.Exit(1)
 	}
 }
-
-

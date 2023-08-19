@@ -19,7 +19,7 @@ func SaveBread(saveData model.SaveData, ctx context.Context) error {
 
 	client, err := app.Firestore(ctx)
 	if err != nil {
-			return err
+		return err
 	}
 
 	iter := client.Collection("breads").Documents(ctx)
@@ -35,7 +35,7 @@ func SaveBread(saveData model.SaveData, ctx context.Context) error {
 
 	_, _, err = client.Collection("breads").Add(ctx, saveData)
 	if err != nil {
-			return fmt.Errorf("データの保存に失敗しました。: %v", err)
+		return fmt.Errorf("データの保存に失敗しました。: %v", err)
 	}
 
 	defer client.Close()

@@ -10,9 +10,11 @@ import (
 	"github.com/k2hmr/panforyou-test-1/internal/model"
 )
 
-
 func FetchBread(entryID string) (*model.SaveData, error) {
 	err := godotenv.Load(".env")
+	if err != nil {
+		return nil, err
+	}
 	var spaceID = os.Getenv("SPACE_ID")
 	var accessToken = os.Getenv("ACCESS_TOKEN")
 
@@ -23,7 +25,7 @@ func FetchBread(entryID string) (*model.SaveData, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
@@ -39,7 +41,7 @@ func FetchBread(entryID string) (*model.SaveData, error) {
 	if err != nil {
 		return nil, err
 	}
-	saveData := model.SaveData{ Id: resData.Sys.ID, Name: resData.Fields.Name, CreatedAt: resData.Sys.CreatedAt }
+	saveData := model.SaveData{Id: resData.Sys.ID, Name: resData.Fields.Name, CreatedAt: resData.Sys.CreatedAt}
 
 	return &saveData, nil
 }
