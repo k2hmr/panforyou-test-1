@@ -4,19 +4,20 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"os"
 
-	"github.com/joho/godotenv"
+	"github.com/k2hmr/panforyou-test-1/internal/config"
 	"github.com/k2hmr/panforyou-test-1/internal/model"
 )
 
 func FetchBread(entryID string) (*model.SaveData, error) {
-	err := godotenv.Load(".env")
+	spaceID, err := config.GetSpaceID()
 	if err != nil {
 		return nil, err
 	}
-	var spaceID = os.Getenv("SPACE_ID")
-	var accessToken = os.Getenv("ACCESS_TOKEN")
+	accessToken, err := config.GetAccessToken()
+	if err != nil {
+		return nil, err
+	}
 
 	apiUrl := fmt.Sprintf("https://cdn.contentful.com/spaces/%s/entries/%s?access_token=%s", spaceID, entryID, accessToken)
 	client := &http.Client{}
