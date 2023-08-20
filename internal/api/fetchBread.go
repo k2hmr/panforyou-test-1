@@ -9,8 +9,8 @@ import (
 	"github.com/k2hmr/panforyou-test-1/internal/model"
 )
 
-func FetchBread(entryID string) (*model.SaveData, error) {
-	spaceID, err := config.GetSpaceID()
+func FetchBread(entryId string) (*model.SaveData, error) {
+	spaceId, err := config.GetSpaceID()
 	if err != nil {
 		return nil, err
 	}
@@ -18,15 +18,13 @@ func FetchBread(entryID string) (*model.SaveData, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	apiUrl := fmt.Sprintf("https://cdn.contentful.com/spaces/%s/entries/%s?access_token=%s", spaceID, entryID, accessToken)
-	client := &http.Client{}
-
+	apiUrl := config.BuildSafeURL(spaceId, entryId, accessToken)
 	req, err := http.NewRequest("GET", apiUrl, nil)
 	if err != nil {
 		return nil, err
 	}
-
+	
+	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
