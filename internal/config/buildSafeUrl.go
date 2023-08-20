@@ -5,7 +5,7 @@ import (
 	"net/url"
 )
 
-func BuildSafeURL(spaceID,entryID, accessToken string) string {
+func BuildSafeURL(spaceID, entryID, accessToken string) string {
 	baseURL := "https://cdn.contentful.com"
 	escapedSpaceId := url.QueryEscape(spaceID)
 	escapedEntryId := url.QueryEscape(entryID)
