@@ -5,19 +5,23 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	"github.com/k2hmr/panforyou-test-1/internal/validator"
 )
 
-func GetSpaceID() (string, error) {
+func GetSpaceId() (string, error) {
 	err := loadEnv(".env")
 	if err != nil {
 		return "", err
 	}
 
-	spaceID := os.Getenv("SPACE_ID")
-	if spaceID == "" {
+	spaceId := os.Getenv("SPACE_ID")
+	if spaceId == "" {
 		return "", fmt.Errorf("SPACE_IDが設定されていません。")
 	}
-	return spaceID, nil
+	if !validator.IsSpaceIdValid(spaceId) {
+		return "", fmt.Errorf("SPACE_IDは不正な形式です。")
+	}
+	return spaceId, nil
 }
 
 func GetAccessToken() (string, error) {
@@ -29,6 +33,9 @@ func GetAccessToken() (string, error) {
 	accessToken := os.Getenv("ACCESS_TOKEN")
 	if accessToken == "" {
 		return "", fmt.Errorf("ACCESS_TOKENが設定されていません。")
+	}
+	if !validator.IsAccessTokenValid(accessToken) {
+		return "", fmt.Errorf("ACCESS_TOKENは不正な形式です。")
 	}
 	return accessToken, nil
 }

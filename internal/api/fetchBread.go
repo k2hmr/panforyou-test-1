@@ -10,7 +10,7 @@ import (
 )
 
 func FetchBread(entryId string) (*model.SaveData, error) {
-	spaceId, err := config.GetSpaceID()
+	spaceId, err := config.GetSpaceId()
 	if err != nil {
 		return nil, err
 	}
@@ -23,7 +23,7 @@ func FetchBread(entryId string) (*model.SaveData, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
