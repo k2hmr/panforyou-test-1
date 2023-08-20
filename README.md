@@ -13,7 +13,7 @@ contentful API で 3 つのパンの情報を取得し、Cloud Firebase に保�
 
 ### Firebase でサービスアカウントの秘密鍵の作成
 
-以下の流れで秘密鍵(JSON ファイル)を作成し、ルートディレクトリに path/to/serviceAccount.json として保存してください。
+以下の流れで秘密鍵(JSON ファイル)を作成し、ルートディレクトリに `path/to/serviceAccount.json` として保存してください。
 
 ↓Firebase コンソール  
 ↓ プロジェクトの設定  
